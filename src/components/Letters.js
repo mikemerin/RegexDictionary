@@ -3,66 +3,81 @@ import { Grid } from 'semantic-ui-react'
 
 export const Letters = (props) => {
 
-  const { a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z } = this.props
-  console.log("letters")
+  // const { a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z } = this.props
+  const { words } = props
+  console.log(words)
+
+
+  function lists(l, letter) {
+    var string = ""
+    string += `"${l}" - ${letter.length}`
+    // for (let x = 1; x < 20; x++ ) {
+    //   var n = letter.filter(w => w.length === x)
+    //   string += `${x} - ${n.length}\n`
+    // }
+    // var n = letter.filter(w => w.length >= 20)
+    // string += `20+ - ${n.length}`
+    return (
+      <Grid.Column>
+        { l }
+        <br />
+        { letter.length }
+      </Grid.Column>
+    )
+  }
 
   return (
-    <Grid className="centered" textAlign="center">
-      <Grid.Row>
-        <Grid.Column width={1}>
-          "A"
-          { a.length }
-        </Grid.Column>
-        <Grid.Column width={1}>
-          "B"
-          { b.length }
-        </Grid.Column>
-        <Grid.Column width={1}>
-          "C"
-          { c.length }
-        </Grid.Column>
-        <Grid.Column width={1}>
-          "D"
-          { d.length }
-        </Grid.Column>
-        <Grid.Column width={1}>
-          "E"
-          { e.length }
-        </Grid.Column>
-        <Grid.Column width={1}>
-          "F"
-          { f.length }
-        </Grid.Column>
-        <Grid.Column width={1}>
-          "G"
-          { g.length }
-        </Grid.Column>
-        <Grid.Column width={1}>
-          "H"
-          { h.length }
-        </Grid.Column>
-        <Grid.Column width={1}>
-          "I"
-          { i.length }
-        </Grid.Column>
-        <Grid.Column width={1}>
-          "J"
-          { j.length }
-        </Grid.Column>
-        <Grid.Column width={1}>
-          "K"
-          { k.length }
-        </Grid.Column>
-        <Grid.Column width={1}>
-          "L"
-          { l.length }
-        </Grid.Column>
-        <Grid.Column width={1}>
-          "M"
-          { m.length }
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
+    <Grid.Row>
+      { lists("A", words[0]) }
+      <Grid.Column>
+        "B"
+
+      </Grid.Column>
+      <Grid.Column>
+        "C"
+
+      </Grid.Column>
+      <Grid.Column>
+        "D"
+
+      </Grid.Column>
+      <Grid.Column>
+        "E"
+
+      </Grid.Column>
+      <Grid.Column>
+        "F"
+
+      </Grid.Column>
+      <Grid.Column>
+        "G"
+
+      </Grid.Column>
+      <Grid.Column>
+        "H"
+
+      </Grid.Column>
+      <Grid.Column>
+        "I"
+
+      </Grid.Column>
+      <Grid.Column>
+        "J"
+
+      </Grid.Column>
+      <Grid.Column>
+        "K"
+
+      </Grid.Column>
+      <Grid.Column>
+        "L"
+
+      </Grid.Column>
+      <Grid.Column>
+        "M"
+
+      </Grid.Column>
+    </Grid.Row>
   )
 
 }

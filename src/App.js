@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react'
 
+import { Chart } from './components/Chart'
 import { Letters } from './components/Letters'
 import './App.css';
 
@@ -36,7 +37,8 @@ export default class App extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      words: [ a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z],
+      words: [ a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z ],
+      // words: [ a, b, c, d, e, f, g, h, i, j, k, l, m ],
       regex: "\\w"
     }
   }
@@ -58,37 +60,22 @@ export default class App extends Component {
   // var words_one = "abcde"
   // var words_two = "fghij"
   // var words_three = "klmnopqrstuvwxyz"
-  // <Letters words={ this.state.words } />
+
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h2>Welcome to the Regex Dictionary!</h2>
-          <p>There are { this.all_words().length } words in our dictionary.</p>
-        </header>
-          <Grid className="centered" textAlign="center">
-            <Grid.Row>
-              <Grid.Column width={8}>
-                <Grid.Column width={1}>
-                  "A"
-                  { a.length }
-                </Grid.Column>
-                <Grid.Column width={1}>
-                  "B"
-                  { b.length }
-                </Grid.Column>
-                <Grid.Column width={1}>
-                  "C"
-                  { c.length }
-                </Grid.Column>
-                <Grid.Column width={1}>
-                  "D"
-                  { d.length }
-                </Grid.Column>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+      <div>
+        <div className="App">
+          <header className="App-header">
+            <h3>Welcome to the Regex Dictionary!</h3>
+          </header>
+        </div>
+        <Grid columns={2} celled='internally' textAlign="center" verticalAlign="middle">
+          <Chart words={ this.state.words } />
+        </Grid>
+        <Grid columns={13} celled='internally' textAlign="center" verticalAlign="middle">
+          <Letters words={ this.state.words } />
+        </Grid>
       </div>
     );
   }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react'
+
+import { Letters } from './components/Letters'
 import './App.css';
 
 import { a } from './dictionary/a'
@@ -56,6 +58,7 @@ export default class App extends Component {
   // var words_one = "abcde"
   // var words_two = "fghij"
   // var words_three = "klmnopqrstuvwxyz"
+  // <Letters words={ this.state.words } />
 
   render() {
     return (
@@ -64,26 +67,28 @@ export default class App extends Component {
           <h2>Welcome to the Regex Dictionary!</h2>
           <p>There are { this.all_words().length } words in our dictionary.</p>
         </header>
-        <Grid className="centered" textAlign="center">
-          <Grid.Row>
-            <Grid.Column width={1}>
-              "A"
-              { a.length }
-            </Grid.Column>
-            <Grid.Column width={1}>
-              "B"
-              { b.length }
-            </Grid.Column>
-            <Grid.Column width={1}>
-              "C"
-              { c.length }
-            </Grid.Column>
-            <Grid.Column width={1}>
-              "D"
-              { d.length }
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+          <Grid className="centered" textAlign="center">
+            <Grid.Row>
+              <Grid.Column width={8}>
+                <Grid.Column width={1}>
+                  "A"
+                  { a.length }
+                </Grid.Column>
+                <Grid.Column width={1}>
+                  "B"
+                  { b.length }
+                </Grid.Column>
+                <Grid.Column width={1}>
+                  "C"
+                  { c.length }
+                </Grid.Column>
+                <Grid.Column width={1}>
+                  "D"
+                  { d.length }
+                </Grid.Column>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
       </div>
     );
   }

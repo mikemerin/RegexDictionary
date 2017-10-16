@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid } from 'semantic-ui-react'
+import { Grid, Input } from 'semantic-ui-react'
 
 import { Chart } from './components/Chart'
 import { Letters } from './components/Letters'
@@ -53,6 +53,11 @@ export default class App extends Component {
     // this.setState({  })
   }
 
+  handleSearchSubmit = (event) => {
+    event.preventDefault()
+
+  }
+
   all_words() {
     return this.state.words.reduce((a, b) => a.concat(b) )
   }
@@ -70,12 +75,20 @@ export default class App extends Component {
             <h3>Welcome to the Regex Dictionary!</h3>
           </header>
         </div>
-        <Grid columns={2} celled='internally' textAlign="center" verticalAlign="middle">
-          <Chart words={ this.state.words } />
-        </Grid>
         <Grid columns={13} celled='internally' textAlign="center" verticalAlign="middle">
-          <Letters words={ this.state.words } />
+          <Grid.Row>
+            <Grid.Column width={8}>
+              <Input placeholder={`${this.state.regex}`} />
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <Chart words={ this.state.words } />
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <br/>
+          </Grid.Row>
         </Grid>
+        <Letters words={ this.state.words } />
       </div>
     );
   }

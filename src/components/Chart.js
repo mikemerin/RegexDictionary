@@ -47,7 +47,7 @@ export const Chart = (props) => {
 
     return (
       <div>
-        <Bar data={data} width={500} height={300}/>
+        <Bar data={data} width={400} height={200}/>
       </div>
     );
 

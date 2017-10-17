@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Form } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 
 import { Chart } from './components/Chart'
 import { Letters } from './components/Letters'
@@ -62,7 +62,7 @@ export default class App extends Component {
         regex: eval(this.state.search)
       })
     } else {
-      alert("sorry that's not valid regex, try again!")
+      alert("Sorry that's not valid regex, try again!")
     }
   }
 

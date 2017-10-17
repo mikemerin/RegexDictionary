@@ -40,13 +40,13 @@ export default class App extends Component {
     this.state = {
       dictionary: [ a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z ],
       regex: /\w+/,
-      search: /\w+/
+      search: "\\w+"
     }
   }
 
   componentWillMount() {
     console.log("mounting")
-    console.log("All words: " + this.allWords())
+    console.log("All words: " + this.allWords().length)
     this.matched()
 
   }
@@ -57,13 +57,9 @@ export default class App extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    if ( this.state.search[0] === "/" && this.state.search[this.state.search.length-1] === "/" ) {
-      this.setState({
-        regex: eval(this.state.search)
-      })
-    } else {
-      alert("Sorry that's not valid regex, try again!")
-    }
+    this.setState({
+      regex: new RegExp(this.state.search)
+    })
   }
 
   matched = () => {
@@ -93,7 +89,7 @@ export default class App extends Component {
         <Grid columns={13} celled='internally' textAlign="center" verticalAlign="middle">
           <Grid.Row>
             <Grid.Column width={8}>
-              <Searchbar regex={ this.state.regex } handleChange={ this.handleChange } handleSubmit={ this.handleSubmit } />
+              <Searchbar search={ this.state.search } handleChange={ this.handleChange } handleSubmit={ this.handleSubmit } />
               <br />
               { `${this.state.regex}` } returns { this.results() }
             </Grid.Column>

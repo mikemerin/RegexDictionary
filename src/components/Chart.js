@@ -7,6 +7,8 @@ export const Chart = (props) => {
 
     let { words } = props
 
+    console.log("chart", props)
+
     words = words.map(x => x.length)
 
     const data = {

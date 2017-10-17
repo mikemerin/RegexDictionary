@@ -86,7 +86,7 @@ export default class App extends Component {
             <h3>Welcome to the Regex Dictionary!</h3>
           </header>
         </div>
-        <Grid columns={13} celled='internally' textAlign="center" verticalAlign="middle">
+        <Grid columns={13} textAlign="center" verticalAlign="middle">
           <Grid.Row>
             <Grid.Column width={8}>
               <Searchbar search={ this.state.search } handleChange={ this.handleChange } handleSubmit={ this.handleSubmit } />
@@ -96,9 +96,6 @@ export default class App extends Component {
             <Grid.Column width={8}>
               <Chart words={ this.matched() } />
             </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <br/>
           </Grid.Row>
         </Grid>
         <Letters words={ this.matched() } />

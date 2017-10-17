@@ -23,7 +23,7 @@ export const Chart = (props) => {
       },
       datasets: [
         {
-          label: 'Number of Words Found',
+          label: 'Number of Words Matched',
           type: 'line',
           fill: true,
           lineTension: 0.1,

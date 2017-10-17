@@ -1,23 +1,15 @@
 import React from 'react'
-import { Grid, Input } from 'semantic-ui-react'
 
 export function Searchbar(props) {
 
-  const { words } = props
-
-  const InputExampleInput = () => (
-    <Input placeholder='\w+' />
-  )
-
+  const { regex, search } = props
 
   return (
-    <Grid className="centered" textAlign="center">
-      <Grid.Row>
-        <Grid.Column width={8}>
-          <Input placeholder={`${this.state.regex}`} />
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
+    <form onSubmit={ props.handleSubmit } >
+      <font size={3}>dictionary.match(</font>
+        <input type="text_area" value={ search } placeholder={`${regex}`} onChange={ props.handleChange } autoFocus />
+      <font size={3}>)</font>
+    </form>
   )
 
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react'
+import PropTypes from 'prop-types';
 
 import { Chart } from './components/Chart'
 import { Letters } from './components/Letters'
@@ -44,13 +45,24 @@ export default class App extends Component {
     }
   }
 
+  static contextTypes = {
+    router: PropTypes.object
+  }
+
+  // lifecycle methods
   componentWillMount() {
     console.log("mounting")
     console.log("All words: " + this.allWords().length)
     this.matched()
-
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    // if the search changed
+    if (prevState.search !== this.state.search)
+      { this.context.router.history.push(`/station/${this.state.search}`) }
+  }
+
+  // handlers
   handleChange = (event) => {
     this.setState({ search: event.target.value })
   }
@@ -62,6 +74,7 @@ export default class App extends Component {
     })
   }
 
+  // functions
   matched = () => {
     return this.state.dictionary.map(letter => letter.filter(word => word.match(this.state.regex)) )
   }

@@ -10,10 +10,11 @@ If installing locally, type in `npm install` then `npm start` to start the serve
 
 ### Future updates
 - searches will be in the URL
-- More outputs for every letter
-- - temporarily replaces the other letters
-- - graph changes to length of letter
-- - additional letter appears in the URL
+- layout change:
+- - letters/counts on the right side of the screen
+- - bottom-left has letter's words
+- - - has all by default, clicking a letter changes URL and shows that letter's info
+- - - graph also changes to length of letter
 - Buttons that add regex syntax to the search
 - Search saves
 - Common searches

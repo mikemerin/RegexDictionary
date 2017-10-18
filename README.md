@@ -1,5 +1,7 @@
 # README
 
+![graphical output](https://imgur.com/AZKTrX9.png)
+
 This application lets you type in any regex script to see which words it can match in the English dictionary.
 
 

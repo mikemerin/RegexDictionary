@@ -40,7 +40,7 @@ export default class App extends Component {
     super(props, context)
     this.state = {
       dictionary: [ a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z ],
-      regex: /\w+/i,
+      regex: /\w+/,
       search: "\\w+"
     }
   }
@@ -53,10 +53,9 @@ export default class App extends Component {
   componentWillMount() {
     console.log("mounting")
     console.log("There are " + this.allWords().length + " words that can be searched.")
-    this.matched()
     if (this.context.router.route.location.pathname !== "/") {
     	const search = this.context.router.route.location.pathname.match(/\/search\/(.+)/)[1].split("/").join("\\")
-      const regex = new RegExp(search, "i")
+      const regex = new RegExp(search)
       this.setState({regex: regex, search: search})
     }
   }
@@ -85,7 +84,7 @@ export default class App extends Component {
 
     if (set) {
       this.setState({
-        regex: new RegExp(this.state.search, "i")
+        regex: new RegExp(this.state.search)
       })
     }
 
@@ -93,23 +92,19 @@ export default class App extends Component {
   }
 
   // functions
-  matched = () => {
-    return this.state.dictionary.map(letter => letter.filter(word => word.match(this.state.regex)) )
-  }
-
-  matchedWords = () => {
-    return this.state.dictionary.map(letter => letter.filter(word => word.match(this.state.regex))).reduce((a, b) => a.concat(b) )
-  }
-
-  results = () => {
-    return `${this.matchedWords().length } / ${ this.allWords().length } words (${Math.round(this.matchedWords().length / this.allWords().length * 10000) / 100 }%)`
-  }
-
   allWords() {
     return this.state.dictionary.reduce((a, b) => a.concat(b) )
   }
 
+
+
   render() {
+
+    const matched = this.state.dictionary.map(letter => letter.filter(word => word.match(this.state.regex)) )
+    const matchedWords = matched.reduce((a, b) => a.concat(b) )
+    const allWords = this.state.dictionary.reduce((a, b) => a.concat(b) )
+    const results = `${matchedWords.length } / ${ allWords.length } words (${Math.round(matchedWords.length / allWords.length * 10000) / 100 }%)`
+
     return (
       <div>
         <div className="App">
@@ -122,14 +117,14 @@ export default class App extends Component {
             <Grid.Column width={8}>
               <Searchbar search={ this.state.search } handleChange={ this.handleChange } handleSubmit={ this.handleSubmit } />
               <br />
-              { `${this.state.regex}` } returns { this.results() }
+              { `${this.state.regex}` } returns { results }
             </Grid.Column>
             <Grid.Column width={8}>
-              <Chart words={ this.matched() } />
+              <Chart words={ matched } />
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <Letters words={ this.matched() } />
+        <Letters words={ matched } />
       </div>
     );
   }

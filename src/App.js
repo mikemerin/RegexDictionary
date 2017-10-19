@@ -52,14 +52,18 @@ export default class App extends Component {
   // lifecycle methods
   componentWillMount() {
     console.log("mounting")
-    console.log("All words: " + this.allWords().length)
+    console.log("There are " + this.allWords().length + " words that can be searched.")
     this.matched()
+    if (this.context.router.route.location.pathname !== "/") {
+    	const regex = this.context.router.route.location.pathname.match(/\/search\/(.+)/)[1]
+    	this.setState({regex: regex, search: regex})
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
     // if the search changed
-    if (prevState.search !== this.state.search)
-      { this.context.router.history.push(`/station/${this.state.search}`) }
+    if (prevState.regex !== this.state.regex)
+      { this.context.router.history.push(`/search/${this.state.search}`) }
   }
 
   // handlers
@@ -70,7 +74,7 @@ export default class App extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     this.setState({
-      regex: new RegExp(this.state.search)
+      regex: new RegExp(this.state.search, "i")
     })
   }
 

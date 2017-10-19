@@ -9,7 +9,7 @@ export const Letters = (props) => {
   function lists(position) {
 
     var list = words[position].slice(0,5).map((word, i) => {
-      return <font size={1} key={i}><p>{word}</p></font>
+      return <font size={1} key={i}><a href={`http://www.dictionary.com/browse/${word}`} target={"_blank"}><p>{word}</p></a></font>
     })
 
     // style={{ height: 170, overflow: scroll}}

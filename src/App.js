@@ -40,7 +40,7 @@ export default class App extends Component {
     super(props, context)
     this.state = {
       dictionary: [ a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z ],
-      regex: /\w+/,
+      regex: /\w+/i,
       search: "\\w+"
     }
   }
@@ -55,8 +55,9 @@ export default class App extends Component {
     console.log("There are " + this.allWords().length + " words that can be searched.")
     this.matched()
     if (this.context.router.route.location.pathname !== "/") {
-    	const regex = this.context.router.route.location.pathname.match(/\/search\/(.+)/)[1]
-    	this.setState({regex: regex, search: regex})
+    	const search = this.context.router.route.location.pathname.match(/\/search\/(.+)/)[1].split("/").join("\\")
+      const regex = new RegExp(search, "i")
+      this.setState({regex: regex, search: search})
     }
   }
 

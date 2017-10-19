@@ -74,9 +74,22 @@ export default class App extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.setState({
-      regex: new RegExp(this.state.search, "i")
-    })
+
+    var set = true
+
+    try { new RegExp(this.state.search) }
+    catch (e) {
+      alert(e.message)
+      set = false
+    }
+
+    if (set) {
+      this.setState({
+        regex: new RegExp(this.state.search, "i")
+      })
+    }
+
+
   }
 
   // functions

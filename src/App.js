@@ -3,7 +3,9 @@ import { Grid, Header, Popup } from 'semantic-ui-react'
 import PropTypes from 'prop-types';
 
 import { Chart } from './components/Chart'
+import { Last } from './components/Last'
 import { Letters } from './components/Letters'
+import { Links } from './components/Links'
 import { Searchbar } from './components/Searchbar'
 // import { Searches } from './components/Searches'
 import './App.css';
@@ -42,7 +44,8 @@ export default class App extends Component {
     this.state = {
       dictionary: [ a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z ],
       regex: /\w+/,
-      search: "\\w+"
+      search: "\\w+",
+      last: ["\\w+"]
     }
   }
 
@@ -95,12 +98,14 @@ export default class App extends Component {
     this.setState({search: this.state.search + event.target.innerText})
   }
 
+  handleAccordion = (event, titleProps) => {
+    debugger
+  }
+
   // functions
   allWords() {
     return this.state.dictionary.reduce((a, b) => a.concat(b) )
   }
-
-
 
   render() {
 
@@ -109,51 +114,11 @@ export default class App extends Component {
     const allWords = this.state.dictionary.reduce((a, b) => a.concat(b) )
     const results = `${matchedWords.length } / ${ allWords.length } words (${Math.round(matchedWords.length / allWords.length * 10000) / 100 }%)`
 
-
-
     return (
       <div>
         <div className="App">
           <header className="App-header">
-            <Grid columns={3}>
-              <Grid.Column width={5}>
-                <Grid columns={5}>
-                  <Grid.Column width={1}>
-                    <a href="mailto:MikeMerinWeather@gmail.com" target="_blank" rel="noopener noreferrer">
-                      <Header as='h3' icon='mail square' verticalAlign='middle' />
-                    </a>
-                  </Grid.Column>
-                  <Grid.Column width={1}>
-                    <a href="https://github.com/mikemerin" target="_blank" rel="noopener noreferrer">
-                      <Header as='h3' icon='github square' verticalAlign='middle' />
-                    </a>
-                  </Grid.Column>
-                  <Grid.Column width={1}>
-                    <a href="https://www.linkedin.com/in/mike-merin-00860a64" target="_blank" rel="noopener noreferrer">
-                      <Header as='h3' icon='linkedin square' verticalAlign='middle' />
-                    </a>
-                  </Grid.Column>
-                  <Grid.Column width={1}>
-                    <a href="https://twitter.com/MikeMerin" target="_blank" rel="noopener noreferrer">
-                      <Header as='h3' icon='twitter square' verticalAlign='middle' />
-                    </a>
-                  </Grid.Column>
-                  <Grid.Column width={2}>
-                  <Popup position='bottom center' trigger={
-                    <a href="https://mikemerin.github.io/regex" target="_blank" rel="noopener noreferrer">
-                      <Header as='h3' icon='graduation' textAlign='left' verticalAlign='middle' />
-                    </a>
-                  } content='Learn more about regex' />
-                  </Grid.Column>
-                </Grid>
-              </Grid.Column>
-              <Grid.Column width={6}>
-                <Header as='h3' content='Welcome to the Regex Dictionary!' verticalAlign='middle' />
-              </Grid.Column>
-              <Grid.Column width={5}>
-              </Grid.Column>
-
-            </Grid>
+            <Links />
           </header>
         </div>
         <Grid columns={13} textAlign="center" verticalAlign="middle">
@@ -177,6 +142,8 @@ export default class App extends Component {
 }
 
 
-// <Grid.Row>
-//   Your Last 5 searches
-// </Grid.Row>
+// <Grid.Column width={1}>
+//   <Grid celled>
+//     <Last hansleAccordian={ this.handleAccordion } />
+//   </Grid>
+// </Grid.Column>

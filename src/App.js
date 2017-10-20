@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Grid } from 'semantic-ui-react'
+import { Grid, Header, Popup } from 'semantic-ui-react'
 import PropTypes from 'prop-types';
 
 import { Chart } from './components/Chart'
 import { Letters } from './components/Letters'
 import { Searchbar } from './components/Searchbar'
+// import { Searches } from './components/Searches'
 import './App.css';
 
 import { a } from './dictionary/a'
@@ -87,8 +88,11 @@ export default class App extends Component {
         regex: new RegExp(this.state.search)
       })
     }
+  }
 
-
+  handleButton = (event) => {
+    event.preventDefault()
+    this.setState({search: this.state.search + event.target.innerText})
   }
 
   // functions
@@ -105,19 +109,61 @@ export default class App extends Component {
     const allWords = this.state.dictionary.reduce((a, b) => a.concat(b) )
     const results = `${matchedWords.length } / ${ allWords.length } words (${Math.round(matchedWords.length / allWords.length * 10000) / 100 }%)`
 
+
+
     return (
       <div>
         <div className="App">
           <header className="App-header">
-            <h3>Welcome to the Regex Dictionary!</h3>
+            <Grid columns={3}>
+              <Grid.Column width={5}>
+                <Grid columns={5}>
+                  <Grid.Column width={1}>
+                    <a href="mailto:MikeMerinWeather@gmail.com" target="_blank" rel="noopener noreferrer">
+                      <Header as='h3' icon='mail square' verticalAlign='middle' />
+                    </a>
+                  </Grid.Column>
+                  <Grid.Column width={1}>
+                    <a href="https://github.com/mikemerin" target="_blank" rel="noopener noreferrer">
+                      <Header as='h3' icon='github square' verticalAlign='middle' />
+                    </a>
+                  </Grid.Column>
+                  <Grid.Column width={1}>
+                    <a href="https://www.linkedin.com/in/mike-merin-00860a64" target="_blank" rel="noopener noreferrer">
+                      <Header as='h3' icon='linkedin square' verticalAlign='middle' />
+                    </a>
+                  </Grid.Column>
+                  <Grid.Column width={1}>
+                    <a href="https://twitter.com/MikeMerin" target="_blank" rel="noopener noreferrer">
+                      <Header as='h3' icon='twitter square' verticalAlign='middle' />
+                    </a>
+                  </Grid.Column>
+                  <Grid.Column width={2}>
+                  <Popup position='bottom center' trigger={
+                    <a href="https://mikemerin.github.io/regex" target="_blank" rel="noopener noreferrer">
+                      <Header as='h3' icon='graduation' textAlign='left' verticalAlign='middle' />
+                    </a>
+                  } content='Learn more about regex' />
+                  </Grid.Column>
+                </Grid>
+              </Grid.Column>
+              <Grid.Column width={6}>
+                <Header as='h3' content='Welcome to the Regex Dictionary!' verticalAlign='middle' />
+              </Grid.Column>
+              <Grid.Column width={5}>
+              </Grid.Column>
+
+            </Grid>
           </header>
         </div>
         <Grid columns={13} textAlign="center" verticalAlign="middle">
           <Grid.Row>
             <Grid.Column width={8}>
-              <Searchbar search={ this.state.search } handleChange={ this.handleChange } handleSubmit={ this.handleSubmit } />
-              <br />
-              { `${this.state.regex}` } returns { results }
+              <Grid.Row>
+                { `${this.state.regex}` } returns { results }
+                <br /><br /><br />
+                <Searchbar search={ this.state.search } handleChange={ this.handleChange } handleSubmit={ this.handleSubmit } handleButton={ this.handleButton } />
+              </Grid.Row>
             </Grid.Column>
             <Grid.Column width={8}>
               <Chart words={ matched } />
@@ -129,3 +175,8 @@ export default class App extends Component {
     );
   }
 }
+
+
+// <Grid.Row>
+//   Your Last 5 searches
+// </Grid.Row>

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Grid } from 'semantic-ui-react'
+import { Grid, Header, Popup } from 'semantic-ui-react'
 import PropTypes from 'prop-types';
 
 import { Chart } from './components/Chart'
-// import { Last } from './components/Last'
+import { Last } from './components/Last'
 import { Letters } from './components/Letters'
 import { Links } from './components/Links'
 import { Searchbar } from './components/Searchbar'
 // import { Searches } from './components/Searches'
-import './App.css'
+import './App.css';
 
 import { a } from './dictionary/a'
 import { b } from './dictionary/b'
@@ -121,21 +121,24 @@ export default class App extends Component {
             <Links />
           </header>
         </div>
-        <Grid columns={13} textAlign="center" verticalAlign="middle">
-          <Grid.Row>
-            <Grid.Column width={8}>
-              <Grid.Row>
-                { `${this.state.regex}` } returns { results }
-                <br /><br /><br />
-                <Searchbar search={ this.state.search } handleChange={ this.handleChange } handleSubmit={ this.handleSubmit } handleButton={ this.handleButton } />
-              </Grid.Row>
-            </Grid.Column>
-            <Grid.Column width={8}>
+        <Grid textAlign="center" verticalAlign="middle" stretched={true}>
+          <Grid.Column width={7}>
+            <Grid.Row>
+              { `${this.state.regex}` } returns { results }
+              <br /><br /><br />
+              <Searchbar search={ this.state.search } handleChange={ this.handleChange } handleSubmit={ this.handleSubmit } handleButton={ this.handleButton } />
+            </Grid.Row>
+            <Grid.Row>
               <Chart words={ matched } />
-            </Grid.Column>
-          </Grid.Row>
+            </Grid.Row>
+          </Grid.Column>
+          <Grid.Column width={2}>
+            <Letters words={ matched } />
+          </Grid.Column>
+          <Grid.Column width={7}>
+            Outputs
+          </Grid.Column>
         </Grid>
-        <Letters words={ matched } />
       </div>
     );
   }

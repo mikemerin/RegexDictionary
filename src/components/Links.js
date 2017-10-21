@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Grid, Header, Popup, Accordion } from 'semantic-ui-react'
+import React from 'react';
+import { Grid, Header, Popup } from 'semantic-ui-react'
 
 
 export const Links = (props) => {
